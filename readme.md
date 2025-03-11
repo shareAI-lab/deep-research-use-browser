@@ -16,7 +16,7 @@ pnpm install
 pnpm run prep
 ```
 
-变异为out文件夹，即以直接使用插件
+编译为out文件夹，即以直接使用插件
 
 ## 支持自定义模型 ⚙️
 
