@@ -1,0 +1,62 @@
+{
+	"manifest_version": 3,
+	"name": "Deep Research Browser",
+	"short_name": "Deep Research Browser",
+	"version": "1.0.4",
+	"description": "Deep Research Browser is a browser extension that allows you to use AI to research and summarize web pages.",
+	"author": "LiM",
+	"icons": {
+		"16": "/icons/logo.png",
+		"32": "/icons/logo.png",
+		"48": "/icons/logo.png",
+		"192": "/icons/logo.png"
+	},
+	"permissions": [
+		"storage",
+		"scripting",
+		"sidePanel",
+		"tabs",
+		"activeTab"
+	],
+	"background": {
+		"service_worker": "background.js",
+		"type": "module"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"Readability.js",
+				"turndown.js",
+				"inject.js",
+				"content-script.js"
+			],
+			"css": [
+				"index.css"
+			],
+			"run_at": "document_end"
+		}
+	],
+	"host_permissions": [
+		"<all_urls>"
+	],
+	"action": {
+		"default_title": "Super2Brain"
+	},
+	"side_panel": {
+		"default_path": "sidepanel.html"
+	},
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"index.css",
+				"inject.js"
+			],
+			"matches": [
+				"<all_urls>"
+			]
+		}
+	]
+}
