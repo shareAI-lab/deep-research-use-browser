@@ -1,0 +1,67 @@
+[
+    {
+        "name": "deepseek-r1",
+        "token": 0.6000,
+        "price": 0.3000
+    },
+    {
+        "name": "deepseek-v3",
+        "token": 0.5620,
+        "price": 0.281
+    },
+    {
+        "name": "ernie-speed-128",
+        "token": 0.1500,
+        "price": 0.0750
+    },
+    {
+        "name": "claude-3-5-sonnet-20240620",
+        "token": 15.0000,
+        "price": 5.0000
+    },
+    {
+        "name": "gpt-4o-mini",
+        "token": 0.1500,
+        "price": 0.075
+    },
+    {
+        "name": "gpt-4o",
+        "token": 5.0,
+        "price": 2.5000
+    },
+    {
+        "name": "glm-4v-32k",
+        "token": 6.6700,
+        "price": 3.335
+    },
+    {
+        "name": "glm-4v",
+        "token": 6.6700,
+        "price": 3.3335
+    },
+    {
+        "name": "qwen-max",
+        "token": 0.2700,
+        "price": 0.135
+    },
+    {
+        "name": "qwen-turbo",
+        "token": 60.0000,
+        "price": 0.135
+    },
+    {
+        "name": "Doubao-pro-128k",
+        "token": 7.0000,
+        "price": 3.5
+    },
+    {
+        "name": "Doubao-lite-128k",
+        "token": 1.1200,
+        "price": 0.56
+    },
+    {
+        "name": "claude-3-opus-20240229",
+        "token": 15.0000,
+        "price": 7.5
+    }
+]

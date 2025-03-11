@@ -1,0 +1,20 @@
+{
+    "GLM-4": 40,
+    "GLM-4V": 40,
+    "Qwen-Max": 40,
+    "Qwen-Turbo": 40,
+    "Doubao-Pro": 40,
+    "Doubao-Lite": 40,
+    "Ernie-Speed-128": 40,
+    "GPT-4.5-Preview": 600,
+    "GPT-4.5-Preview-2025-02-27": 600,
+    "GPT-4o": 120,
+    "GPT-4o-Mini": 30,
+    "Deepseek-R1": 80,
+    "Deepseek-V3": 60,
+    "Grok-3": 60,
+    "Claude-3-7-Sonnet-Thinking": 500,
+    "Claude-3-7-Sonnet-20250219": 500,
+    "Claude-3-5-Sonnet": 100,
+    "Claude-3-Opus": 100
+}
