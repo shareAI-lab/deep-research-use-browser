@@ -19,11 +19,13 @@ pnpm run prep
 ```
 
 **方法二：从发布版本安装**
+
 - 从 release 页面下载最新版本的扩展包
 
 ### 浏览器安装步骤
 
 1. 打开浏览器的扩展管理页面
+
    - Edge: `edge://extensions`
    - Chrome: `chrome://extensions`
 
@@ -44,11 +46,15 @@ pnpm run prep
 ## 自定义模型支持 ⚙️
 
 您可以根据个人需求：
+
 - 选择不同的 AI 模型
 - 配置各种 API 接口
-- 自定义搜索参数和行为
 
 通过这些定制选项，Deep Research Browser 能够提供最适合您工作流程的个性化搜索体验。
+
+## 插件截图
+
+![Deep Research Browser](@image.png)
 
 ## 贡献与反馈 💬
 
