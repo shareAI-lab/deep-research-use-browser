@@ -1,28 +1,28 @@
-import { MessageSquarePlus, Save, Copy, FileText } from "lucide-react";
-import { marked } from "marked";
+import {
+  BorderStyle,
+  Document,
+  HeadingLevel,
+  Packer,
+  Paragraph,
+  Table,
+  TableCell,
+  TableRow,
+  TextRun,
+} from "docx";
+import { saveAs } from "file-saver";
 import { motion } from "framer-motion";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import {
-  Document,
-  Packer,
-  Paragraph,
-  TextRun,
-  HeadingLevel,
-  Table,
-  TableRow,
-  TableCell,
-  BorderStyle,
-} from "docx";
-import { saveAs } from "file-saver";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { Tooltip } from "react-tooltip";
+import { Copy, FileText, MessageSquarePlus, Save } from "lucide-react";
 import MarkdownIt from "markdown-it";
+import MarkdownItDeflist from "markdown-it-deflist";
+import MarkdownItFootnote from "markdown-it-footnote";
+import MarkdownItMark from "markdown-it-mark";
 import MarkdownItSub from "markdown-it-sub";
 import MarkdownItSup from "markdown-it-sup";
-import MarkdownItFootnote from "markdown-it-footnote";
-import MarkdownItDeflist from "markdown-it-deflist";
-import MarkdownItMark from "markdown-it-mark";
+import { marked } from "marked";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 const className = `text-sm text-black break-words leading-relaxed prose overflow-wrap break-word 
     prose-p:leading-6 prose-p:pb-0 prose-p:mb-0  prose-p:text-black
@@ -36,7 +36,7 @@ const className = `text-sm text-black break-words leading-relaxed prose overflow
     prose-ul:list-decimal prose-ul:text-black prose-ul:mb-0 prose-ul:leading-6
     prose-ol:mb-0 prose-ol:text-black prose-ol:list-decimal prose-ol:pl-6 prose-li:text-black prose-li:mb-0 prose-li:leading-6
     prose-pre:before:content-none prose-pre:after:content-none prose-pre:rounded-md prose-pre:overflow-auto prose-pre:bg-transparent
-    prose-code:text-black prose-code:bg-gray-200 prose-code:p-2 prose-code:rounded-md prose-code:overflow-auto prose-code:my-4
+    prose-code:text-black prose-code:bg-gray-200 prose-code:p-2 prose-code:rounded-md prose-code:overflow-auto 
     prose-blockquote:font-medium prose-blockquote:italic prose-blockquote:text-[var(--tw-prose-quotes)] prose-blockquote:border-l-[0.25rem] 
     prose-blockquote:border-l-[var(--tw-prose-quote-borders)] prose-blockquote:mt-6 prose-blockquote:mb-6 prose-blockquote:pl-4
     prose-table:mt-4 prose-table:mb-4 prose-table:w-full prose-table:overflow-hidden prose-table:border-collapse prose-table:border prose-table:border-gray-300

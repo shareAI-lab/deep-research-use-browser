@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "Deep Research Browser",
 	"short_name": "Deep Research Browser",
-	"version": "1.0.4",
+	"version": "1.0.0",
 	"description": "Deep Research Browser is a browser extension that allows you to use AI to research and summarize web pages.",
 	"author": "LiM",
 	"icons": {
