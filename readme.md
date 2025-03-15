@@ -54,7 +54,7 @@ pnpm run prep
 
 ## 插件截图
 
-![Deep Research Browser](@image.png)
+![Deep Research Browser](./screenshot/@image.png)
 
 ## 贡献与反馈 💬
 
