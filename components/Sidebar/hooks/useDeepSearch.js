@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useDeepSearch = (maxDepth = 3, initialApiKey, initialBaseUrl, getNeedTime) => {
   const [selectedModel, setSelectedModel] = useState("deepseek-chat");

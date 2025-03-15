@@ -1,9 +1,10 @@
+import { check, getSimpleResponse } from "./check";
+import { getDeepAnalysis, getDeepAnswer, getDeepQuestion } from "./deepInvolve";
+import { analyzeQuestions, getAnswer, processDocument, relieaQuestion } from "./involve";
 import { searchWebContent } from "./search";
 import { createContext } from "./utils";
-import { relieaQuestion, analyzeQuestions, processDocument, getAnswer } from "./involve";
-import { getDeepAnalysis, getDeepQuestion, getDeepAnswer } from "./deepInvolve";
-import { check, getSimpleResponse } from "./check";
-const getUrl = async (questions, updateStatus) => {
+
+export const getUrl = async (questions, updateStatus) => {
   const promise = questions.map(async (question) => {
     const results = await searchWebContent(question, updateStatus);
     return results;
@@ -149,11 +150,14 @@ const getResponse = async (
 
     const question = await relieaQuestion(query, selectedModel, apikey, baseUrl);
     checkAbort();
+
     const questions = await analyzeQuestions(query, selectedModel, apikey, baseUrl, question);
     checkAbort();
+
     if (questions.length === 0) {
       return "### 分析问题失败 \n ##### 请检查您的问题，尝试重新提问 \n ##### 请检查网络链接 \n ##### 请尝试更换模型 \n ##### 如果您觉得这是一个bug，请在设置关于里反馈给我们";
     }
+
     questions.map((question) => {
       context.updateStatus(`搜索问题：${question}`);
       checkAbort();

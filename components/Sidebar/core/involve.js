@@ -1,4 +1,5 @@
 import { callOpenaiWithRetry } from "./callAi";
+import { ensureString, safeJoin } from "./utils";
 
 export const relieaQuestion = async (query, selectedModel, apikey, baseUrl) => {
   const messages = [
@@ -55,13 +56,14 @@ export const processDocument = async (
   selectedModel,
   apikey,
   baseUrl,
-  relieaQuestion
+  relieaQuestion,
+  title
 ) => {
   const document = questions
     .map((question, index) => {
       return `
     文档内容${index + 1}
-    ${question.content}
+    ${ensureString(question.content)}
     
     `;
     })
@@ -83,7 +85,9 @@ export const processDocument = async (
       - 尽可能探索文档中提到的每个主题的多个方面和维度
       - 对复杂概念提供更深入的分析
       - 回答应当结构清晰但内容丰富，段落充实
-      
+
+      ${title ? `当前你要生成的段落是: ${title}` : ""}
+
       原始问题:
       ${query}
 
@@ -110,21 +114,34 @@ export const processDocument = async (
   return response;
 };
 
-export const getAnswer = async (query, summary, selectedModel, apikey, baseUrl, relieaQuestion) => {
+export const getAnswer = async (
+  query,
+  summary,
+  selectedModel,
+  apikey,
+  baseUrl,
+  relieaQuestion,
+  title,
+  index
+) => {
+  console.log(index);
+  console.log(title);
   const messages = [
     {
       role: "system",
       content: `你是一个专业的知识回答助手，你的回答需要极其全面、深入且有实质内容。基于以下信息提供详尽解答：
+      ${title ? `当前你要生成的段落是名称以及段落的具体内容是: ${title}` : ""}
 
-      原始问题:
-      ${query}
+      ${
+        index
+          ? `当前你要生成的段落是第${index}个段落，保证最高级的标题是二级标题，且所有标题都是以当前段落数量开头的`
+          : ""
+      }
 
-      用户意图:
-      ${relieaQuestion}
 
       搜索到的文档内容:
-      ${summary}
-      
+      ${safeJoin(summary)}
+
       回答要求：
       1. 提供极其详尽的内容，包含所有相关细节和重要信息
       2. 深入分析每个相关概念，提供多角度的解释

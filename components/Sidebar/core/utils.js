@@ -31,4 +31,21 @@ const createContext = (
   return context;
 };
 
-export { removeThinkTags, removeThinkingTags, createContext };
+// 确保值是字符串
+const ensureString = (value) => (typeof value === "string" ? value : JSON.stringify(value || ""));
+
+// 安全地处理数组中的每个元素，确保它们是字符串
+const safeMapToString = (arr) =>
+  Array.isArray(arr) ? arr.map((item) => ensureString(item)).filter(Boolean) : [ensureString(arr)];
+
+// 安全地连接数组元素
+const safeJoin = (arr, separator = "\n\n") => safeMapToString(arr).join(separator);
+
+export {
+  createContext,
+  ensureString,
+  removeThinkingTags,
+  removeThinkTags,
+  safeJoin,
+  safeMapToString,
+};

@@ -1,14 +1,14 @@
-import { Loader2, ChevronUp, ChevronDown, Check, XCircle, StopCircle, Sparkle } from "lucide-react";
-import { getResponse } from "../../core/agent.js";
-import { marked } from "marked";
-import { PlaceHolder } from "./modules/placeHolder";
-import { TypeWriter } from "./modules/TypeWriter";
-import { useState, useRef, useEffect } from "react";
-import { ActionButtons } from "./modules/actionButton";
-import { InputArea } from "./modules/inputArea";
 import katex from "katex";
 import "katex/dist/katex.min.css";
+import { ChevronDown, ChevronUp, Loader2, StopCircle, XCircle } from "lucide-react";
+import { marked } from "marked";
+import { useEffect, useRef, useState } from "react";
 import { getGetPageCount, removeGetPageCount } from "../../../../public/storage";
+import { getResponse } from "../../saerchResult/index";
+import { ActionButtons } from "./modules/actionButton";
+import { InputArea } from "./modules/inputArea";
+import { PlaceHolder } from "./modules/placeHolder";
+import { TypeWriter } from "./modules/TypeWriter";
 
 const commonClassNames = `text-sm text-black break-words leading-relaxed prose overflow-wrap break-word 
     prose-p:leading-6 prose-p:pb-0 prose-p:mb-0  prose-p:text-black
@@ -197,9 +197,7 @@ export const DeepSearch = ({
     messages?.map((msg, index) => (
       <div key={`message-${index}`} className="animate-fadeIn px-8 pt-4 pb-2">
         {msg.role === "user" ? (
-          <div>
-            <p className="text-lg text-gray-900 font-medium leading-relaxed">{msg.content}</p>
-          </div>
+          <div></div>
         ) : (
           <div>
             {Array.isArray(currentStatus) && (

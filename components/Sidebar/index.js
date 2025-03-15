@@ -1,14 +1,19 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { SettingPage } from "./components/settingPage";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  getCustomModels,
+  getLmstudioModels,
+  getModelAndUrlConig,
+  getOllamaModels,
+} from "../../public/storage";
+import { config } from "../config/index";
 import { ActivateBar } from "./components/common/activateBar";
 import { DeepSearch } from "./components/deepSearch";
+import { SettingPage } from "./components/settingPage";
+import { pageTransition, pageVariants } from "./contants/pageTransltions";
 import { useDeepSearch } from "./hooks/useDeepSearch";
-import { AnimatePresence, motion } from "framer-motion";
-import { pageVariants, pageTransition } from "./contants/pageTransltions";
-import { useSeetingHandler } from "./hooks/useSeetingHandler";
-import { config } from "../config/index";
-import { getModelAndUrlConig } from "../../public/storage";
 import { useTimeGussing } from "./hooks/useGessingTime";
+import { useSeetingHandler } from "./hooks/useSeetingHandler";
 
 export default function Sidebar() {
   const [activatePage, setActivatePage] = useState(0);
@@ -32,6 +37,34 @@ export default function Sidebar() {
 
   const deepSearchState = useDeepSearch(maxDepth, currentApiKey, currentBaseUrl, getNeedTime);
 
+  const getBestModelForProvider = async (provider) => {
+    try {
+      switch (provider) {
+        case "deepseek":
+          return "deepseek-chat";
+        case "openai":
+          return "gpt-4o-mini";
+        case "ollama": {
+          const ollamaModels = await getOllamaModels();
+          return Object.keys(ollamaModels)[0] || "llama3";
+        }
+        case "lmstudio": {
+          const lmstudioModels = await getLmstudioModels();
+          return Object.keys(lmstudioModels)[0] || "mixtral-8x7b";
+        }
+        case "custom": {
+          const customModels = await getCustomModels();
+          return Object.keys(customModels)[0] || "custom-model";
+        }
+        default:
+          return "deepseek-chat";
+      }
+    } catch (error) {
+      console.error(`获取${provider}模型失败:`, error);
+      return "deepseek-chat";
+    }
+  };
+
   const checkSetting = async () => {
     const providers = Object.keys(settings);
 
@@ -49,15 +82,9 @@ export default function Sidebar() {
         preferredOrder.find((p) => validProviders.includes(p)) || validProviders[0];
 
       setSelectedModelProvider(bestProvider);
-      const modelMap = {
-        deepseek: "deepseek-chat",
-        openai: "gpt-4o-mini",
-        ollama: "llama3",
-        lmstudio: "mixtral-8x7b",
-        custom: "custom-model",
-      };
 
-      deepSearchState.setSelectedModel(modelMap[bestProvider] || "gpt-4o-mini");
+      const bestModel = await getBestModelForProvider(bestProvider);
+      deepSearchState.setSelectedModel(bestModel);
     }
   };
 
