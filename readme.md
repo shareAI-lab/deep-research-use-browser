@@ -52,6 +52,17 @@ pnpm run prep
 
 通过这些定制选项，Deep Research Browser 能够提供最适合您工作流程的个性化搜索体验。
 
+## 开发计划 📝
+
+我们正在积极开发以下功能：
+
+- **多种调研模式**：
+
+  - 学术研究模式
+  - 市场分析模式
+  - 技术探索模式
+  - 竞品对比模式
+
 ## 插件截图
 
 ![Deep Research Browser](./screenshot/image.png)
@@ -59,3 +70,6 @@ pnpm run prep
 ## 贡献与反馈 💬
 
 欢迎提交问题报告和功能建议，共同改进这个工具！
+请联系
+
+![Share-AI Lab](./screenshot/shareailab.png)
