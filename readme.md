@@ -77,5 +77,3 @@ pnpm run prep
 请联系
 
 ![Share-AI Lab](./screenshot/shareailab.png)
-
-迪卡侬的产品怎么样，有什么产品，质量和价格怎么样，用户的评价怎么样
